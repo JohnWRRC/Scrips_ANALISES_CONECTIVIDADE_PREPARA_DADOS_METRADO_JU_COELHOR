@@ -1,0 +1,15 @@
+setwd('F:\\data\\Ju_coelho')
+tab<-read.table('teste2.txt',head=T,sep=',')
+
+
+head(Indometh)
+
+tab.wide <- reshape(tab, v.names = "area.M2", idvar = "HEXID",
+                timevar = "classe", direction = "wide")
+tab.wide[is.na(tab.wide)] <-0
+
+tab.wide$pct_edge<-tab.wide$area.M2.1/
+	(tab.wide$area.M2.0+tab.wide$area.M2.1+tab.wide$area.M2.2)*100
+
+tab.wide$pct_veg<-(tab.wide$area.M2.1+tab.wide$area.M2.2)/
+	(tab.wide$area.M2.0+tab.wide$area.M2.1+tab.wide$area.M2.2)*100
